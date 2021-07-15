@@ -1,0 +1,4 @@
+#Sat May 22 16:40:58 ALMT 2021
+base.0=/media/kemel/DATA/KoronaTime/AndroidStudio/DesertClicker/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
