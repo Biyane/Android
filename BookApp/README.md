@@ -1,2 +1,2 @@
 This app about fetching books information from google book api.<br>
-P.S. Not finished. 
+P.S. Not finished yet. 
