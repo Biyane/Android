@@ -1,4 +1,4 @@
- package com.example.bookapp.ui
+ package com.example.bookapp.presentation.ui
 
 import android.os.Bundle
 import android.view.*

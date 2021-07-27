@@ -1,4 +1,4 @@
-package com.example.bookapp.adapter.binding
+package com.example.bookapp.presentation.adapter.binding
 
 import android.widget.ImageView
 import androidx.core.net.toUri

@@ -1,18 +1,21 @@
-package com.example.bookapp.presentation.model
+package com.example.bookapp.domain.model
 
+import android.util.Log
 import androidx.lifecycle.*
+import com.example.bookapp.application.network.BookApi
+import com.example.bookapp.application.repository.BookRepository
 import com.example.bookapp.data.database.Book
-import com.example.bookapp.network.BookApi
-import com.example.bookapp.repository.BookRepository
-import com.google.gson.Gson
+import com.example.bookapp.data.database.BookDTO
+import com.example.bookapp.data.database.BookDeserializer
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
 
 class BookViewModel(private val repository: BookRepository) : ViewModel() {
 
-    private val _bookJson = MutableLiveData<Book>()
-    val bookJson: LiveData<Book> = _bookJson
+    private val _bookJson = MutableLiveData<BookDTO>()
+    val bookJson: LiveData<BookDTO> = _bookJson
 
     val bookList: LiveData<List<Book>> = repository.books.asLiveData()
 
@@ -30,23 +33,20 @@ class BookViewModel(private val repository: BookRepository) : ViewModel() {
             try {
                 val jsonStringResult = BookApi.retrofitService.getJson("Hazel")
                 parseJsonString(jsonStringResult)
-//                insertBook(book)
             } catch (e: Exception){
-                _bookJson.value = Book(title = "Something went wrong")
+                Log.e("bookModel", e.toString())
             }
 
         }
     }
 
     private fun parseJsonString(jsonStr: String) {
-        val emptyBook = Book()
         val root = JSONObject(jsonStr)
         val volumeInfo = root.getJSONArray("items").getJSONObject(0)
             .getJSONObject("volumeInfo")
         if (volumeInfo !is JSONException) {
-            _bookJson.value = Gson().fromJson(volumeInfo.toString(), Book::class.java)
-        } else {
-            _bookJson.value = emptyBook
+            val gSon = GsonBuilder().registerTypeAdapter(BookDTO::class.java, BookDeserializer()).create()
+            _bookJson.value = gSon.fromJson(volumeInfo.toString(), BookDTO::class.java)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.bookapp.ui
+package com.example.bookapp.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -40,7 +40,7 @@ class BookDetailFragment : Fragment() {
     }
 
     fun addButtonClicked() {
-        bookViewModel.bookJson.value?.let { bookViewModel.insertBook(it) }
+//        bookViewModel.bookJson.value?.let { bookViewModel.insertBook(it) }
         findNavController().navigate(R.id.action_bookDetailFragment_to_bookListFragment)
     }
 

@@ -1,4 +1,4 @@
-package com.example.bookapp.repository
+package com.example.bookapp.application.repository
 
 import com.example.bookapp.data.database.Book
 import com.example.bookapp.data.database.BookDao

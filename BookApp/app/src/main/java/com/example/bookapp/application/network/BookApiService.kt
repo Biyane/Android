@@ -1,4 +1,4 @@
-package com.example.bookapp.network
+package com.example.bookapp.application.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory

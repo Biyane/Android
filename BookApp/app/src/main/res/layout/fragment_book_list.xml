@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.BookListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.ui.BookListFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.bookapp.model.BookViewModel" />
-
+            type="com.example.bookapp.domain.model.BookViewModel" />
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/json_string"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_book"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list_item"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:clipToPadding="false"
+            app:spanCount="2"
+            android:padding="6dp"
+            android:layout_margin="2dp"/>
 
-    </LinearLayout>
+    </FrameLayout>
 
 </layout>
