@@ -1,9 +1,8 @@
 package com.example.bookapp.database
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 @Entity(tableName = "book_table")
@@ -17,7 +16,19 @@ data class Book(
     @Embedded val imageLinks: ImageLinks = ImageLinks("None", "None")
 )
 
-data  class ImageLinks(
+data class ImageLinks(
     @ColumnInfo(name = "small_thumbnail") val smallThumbnail: String,
     @ColumnInfo(name = "thumbnail") val thumbnail: String
 )
+
+class Converter {
+        @TypeConverter
+        fun saveList(list: List<String>): String {
+            return Gson().toJson(list)
+        }
+
+        @TypeConverter
+        fun restoreList(str: String): List<String> {
+            return Gson().fromJson(str, object : TypeToken<List<String>>() {}.type)
+        }
+}

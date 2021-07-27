@@ -1,18 +1,19 @@
-package com.example.bookapp.ui
+ package com.example.bookapp.ui
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.example.bookapp.BookApplication
 import com.example.bookapp.R
+import com.example.bookapp.presentation.adapter.BookListAdapter
 import com.example.bookapp.databinding.FragmentBookListBinding
-import com.example.bookapp.model.BookViewModel
-import com.example.bookapp.model.BookViewModelFactory
+import com.example.bookapp.domain.model.BookViewModel
+import com.example.bookapp.domain.model.BookViewModelFactory
 
 class BookListFragment : Fragment() {
 
-    private val viewModel: BookViewModel by viewModels {
+    private val bookViewModel: BookViewModel by activityViewModels {
         BookViewModelFactory(
             (activity?.application as BookApplication).repository
         )
@@ -29,9 +30,17 @@ class BookListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        val adapter = BookListAdapter()
+        binding.apply {
+            viewModel = bookViewModel
+            lifecycleOwner = this@BookListFragment
+            recyclerViewBook.adapter = adapter
+        }
+        bookViewModel.bookList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)

@@ -12,6 +12,6 @@ interface BookDao {
     fun getAllBooks(): Flow<List<Book>>
 
     @Insert
-    suspend fun addBook()
+    suspend fun addBook(book: Book)
 
 }
