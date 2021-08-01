@@ -1,16 +1,12 @@
-package com.example.bookapp.domain.model
+package com.example.bookapp.application.model
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.bookapp.application.network.BookApi
 import com.example.bookapp.application.repository.BookRepository
+import com.example.bookapp.data.BookDTO
 import com.example.bookapp.data.database.Book
-import com.example.bookapp.data.database.BookDTO
-import com.example.bookapp.data.database.BookDeserializer
-import com.google.gson.GsonBuilder
+import com.example.bookapp.data.network.BookApi
 import kotlinx.coroutines.launch
-import org.json.JSONException
-import org.json.JSONObject
 
 class BookViewModel(private val repository: BookRepository) : ViewModel() {
 
@@ -23,7 +19,6 @@ class BookViewModel(private val repository: BookRepository) : ViewModel() {
         repository.insertBook(book)
     }
 
-
     init {
         getBookJson()
     }
@@ -31,8 +26,9 @@ class BookViewModel(private val repository: BookRepository) : ViewModel() {
     private fun getBookJson() {
         viewModelScope.launch {
             try {
-                val jsonStringResult = BookApi.retrofitService.getJson("Hazel")
-                parseJsonString(jsonStringResult)
+                _bookJson.value = BookApi.retrofitService.getJson("Hazel").items[0].books
+                bookJson.value?.let { Log.e("myPointer", it.description) }
+                Log.e("helloThere", "haskjdhaj")
             } catch (e: Exception){
                 Log.e("bookModel", e.toString())
             }
@@ -40,15 +36,6 @@ class BookViewModel(private val repository: BookRepository) : ViewModel() {
         }
     }
 
-    private fun parseJsonString(jsonStr: String) {
-        val root = JSONObject(jsonStr)
-        val volumeInfo = root.getJSONArray("items").getJSONObject(0)
-            .getJSONObject("volumeInfo")
-        if (volumeInfo !is JSONException) {
-            val gSon = GsonBuilder().registerTypeAdapter(BookDTO::class.java, BookDeserializer()).create()
-            _bookJson.value = gSon.fromJson(volumeInfo.toString(), BookDTO::class.java)
-        }
-    }
 
 }
 

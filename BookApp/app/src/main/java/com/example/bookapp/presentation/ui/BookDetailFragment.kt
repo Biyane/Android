@@ -9,9 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.bookapp.BookApplication
 import com.example.bookapp.R
+import com.example.bookapp.application.model.BookViewModel
+import com.example.bookapp.application.model.BookViewModelFactory
 import com.example.bookapp.databinding.FragmentBookDetailBinding
-import com.example.bookapp.domain.model.BookViewModel
-import com.example.bookapp.domain.model.BookViewModelFactory
 
 class BookDetailFragment : Fragment() {
 

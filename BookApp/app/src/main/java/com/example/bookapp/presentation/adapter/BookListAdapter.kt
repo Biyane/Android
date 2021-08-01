@@ -26,7 +26,7 @@ class BookListAdapter : ListAdapter<Book, BookListAdapter.BookViewHolder>(DiffCa
         override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
             return oldItem.authors == newItem.authors && oldItem.averageRating == newItem.averageRating
                     && oldItem.description == newItem.description && oldItem.id == newItem.id
-                    && oldItem.title == newItem.title && oldItem.imageLinks.thumbnail == newItem.imageLinks.thumbnail
+                    && oldItem.title == newItem.title && oldItem.imageLink == newItem.imageLink
         }
 
     }

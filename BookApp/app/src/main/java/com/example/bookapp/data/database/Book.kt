@@ -16,15 +16,4 @@ data class Book(
     @ColumnInfo(name = "image_link") val imageLink: String
 )
 
-//
-//class Converter {
-//        @TypeConverter
-//        fun saveList(list: List<String>): String {
-//            return Gson().toJson(list)
-//        }
-//
-//        @TypeConverter
-//        fun restoreList(str: String): List<String> {
-//            return Gson().fromJson(str, object : TypeToken<List<String>>() {}.type)
-//        }
-//}
+

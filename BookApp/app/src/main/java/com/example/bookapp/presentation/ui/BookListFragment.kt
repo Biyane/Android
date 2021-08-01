@@ -8,8 +8,8 @@ import com.example.bookapp.BookApplication
 import com.example.bookapp.R
 import com.example.bookapp.presentation.adapter.BookListAdapter
 import com.example.bookapp.databinding.FragmentBookListBinding
-import com.example.bookapp.domain.model.BookViewModel
-import com.example.bookapp.domain.model.BookViewModelFactory
+import com.example.bookapp.application.model.BookViewModel
+import com.example.bookapp.application.model.BookViewModelFactory
 
 class BookListFragment : Fragment() {
 
