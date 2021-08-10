@@ -3,23 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/bookDetailFragment">
+    app:startDestination="@id/searchBookFragment">
 
     <fragment
         android:id="@+id/bookListFragment"
         android:name="com.example.bookapp.presentation.ui.BookListFragment"
         android:label="fragment_book_list"
         tools:layout="@layout/fragment_book_list">
-
+        <argument
+            android:name="bookName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"
         android:name="com.example.bookapp.presentation.ui.BookDetailFragment"
         android:label="fragment_book_detail"
         tools:layout="@layout/fragment_book_detail">
-        <argument
-            android:name="bookName"
-            app:argType="string" />
         <action
             android:id="@+id/action_bookDetailFragment_to_bookListFragment"
             app:destination="@id/bookListFragment"
@@ -31,7 +30,7 @@
         android:name="com.example.bookapp.presentation.ui.SearchBookFragment"
         android:label="fragment_search_book">
         <action
-            android:id="@+id/action_searchBook_to_bookDetailFragment"
-            app:destination="@id/bookDetailFragment" />
+            android:id="@+id/action_searchBookFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment" />
     </fragment>
 </navigation>

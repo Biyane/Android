@@ -7,17 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.bookapp.BookApplication
 import com.example.bookapp.R
+import com.example.bookapp.application.interactor.network.GetBookListListUseCase
 import com.example.bookapp.application.model.BookViewModel
 import com.example.bookapp.application.model.BookViewModelFactory
 import com.example.bookapp.databinding.FragmentBookDetailBinding
+import org.koin.android.ext.android.get
 
 class BookDetailFragment : Fragment() {
 
     private val bookViewModel: BookViewModel by activityViewModels {
         BookViewModelFactory(
-            (activity?.application as BookApplication).repository
+            (activity?.application as BookApplication).repository,
+            get<GetBookListListUseCase>()
         )
     }
     private lateinit var binding: FragmentBookDetailBinding
@@ -40,9 +44,9 @@ class BookDetailFragment : Fragment() {
     }
 
     fun addButtonClicked() {
-//        bookViewModel.bookJson.value?.let { bookViewModel.insertBook(it) }
         findNavController().navigate(R.id.action_bookDetailFragment_to_bookListFragment)
     }
+
 
 }
 

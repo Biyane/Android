@@ -24,8 +24,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             android:clipToPadding="false"
             app:spanCount="2"
-            android:padding="6dp"
-            android:layout_margin="2dp"/>
+            android:padding="15dp"/>
 
     </FrameLayout>
 

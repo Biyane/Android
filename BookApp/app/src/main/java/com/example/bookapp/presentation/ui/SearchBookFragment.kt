@@ -18,7 +18,7 @@ class SearchBookFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View  {
         binding = FragmentSearchBookBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -30,9 +30,9 @@ class SearchBookFragment : Fragment() {
     }
 
     fun onSearchClick(){
-        val bookText = binding.editTextFindBook.text.toString().trim()
+        val bookText = binding.editTextFindBook.text.toString()
         if (!TextUtils.isEmpty(bookText)){
-            val action = SearchBookFragmentDirections.actionSearchBookToBookDetailFragment(bookText)
+            val action = SearchBookFragmentDirections.actionSearchBookFragmentToBookListFragment(bookText)
             findNavController().navigate(action)
         }
     }

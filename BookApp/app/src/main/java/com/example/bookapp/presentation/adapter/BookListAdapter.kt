@@ -5,28 +5,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookapp.data.database.Book
+import com.example.bookapp.data.network.BookDTO
 import com.example.bookapp.databinding.ListItemBinding
 
-class BookListAdapter : ListAdapter<Book, BookListAdapter.BookViewHolder>(DiffCallBack) {
+class BookListAdapter : ListAdapter<BookDTO, BookListAdapter.BookViewHolder>(DiffCallBack) {
 
     class BookViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(book: Book) {
+        fun bind(book: BookDTO) {
             binding.book = book
             binding.executePendingBindings()
         }
     }
 
-    companion object DiffCallBack : DiffUtil.ItemCallback<Book>() {
-        override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
+    companion object DiffCallBack : DiffUtil.ItemCallback<BookDTO>() {
+        override fun areItemsTheSame(oldItem: BookDTO, newItem: BookDTO): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
+        override fun areContentsTheSame(oldItem: BookDTO, newItem: BookDTO): Boolean {
             return oldItem.authors == newItem.authors && oldItem.averageRating == newItem.averageRating
-                    && oldItem.description == newItem.description && oldItem.id == newItem.id
-                    && oldItem.title == newItem.title && oldItem.imageLink == newItem.imageLink
+                    && oldItem.description == newItem.description && oldItem.title == newItem.title
+                    && oldItem.imageLinks.thumbnail == newItem.imageLinks.thumbnail
+                    && oldItem.imageLinks.smallThumbnail == oldItem.imageLinks.smallThumbnail
         }
 
     }

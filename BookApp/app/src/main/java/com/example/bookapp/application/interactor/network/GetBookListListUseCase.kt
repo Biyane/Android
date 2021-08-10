@@ -1,20 +1,15 @@
 package com.example.bookapp.application.interactor.network
 
-import android.util.Log
-import com.example.bookapp.application.interactor.parser.IParserUseCase
 import com.example.bookapp.application.repository.BookRepository
+import com.example.bookapp.data.network.BookDTO
 
 
 class GetBookListListUseCase(
-    private val repository: BookRepository,
-    private val parser: IParserUseCase
+    private val repository: BookRepository
 ) : IGetBookListUseCase {
-    override suspend fun getBooksJson(bookName: String) {
-        try {
-            val jsonStringResult = repository.getBookListJson(bookName)
-//            parser.parse(jsonStringResult)
-        } catch (e: Exception) {
-            Log.e("bookModel", e.toString())
-        }
+    override suspend fun getBooksJson(bookName: String): List<BookDTO> {
+        val volumeInfoTemp = repository.getBookListJson(bookName)
+        return volumeInfoTemp?.map { it.books } ?: listOf()
     }
 }
+
