@@ -1,10 +1,11 @@
- package com.example.bookapp.presentation.ui
+package com.example.bookapp.presentation.ui
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.bookapp.BookApplication
 import com.example.bookapp.R
 import com.example.bookapp.application.interactor.network.GetBookListListUseCase
@@ -14,7 +15,7 @@ import com.example.bookapp.databinding.FragmentBookListBinding
 import com.example.bookapp.presentation.adapter.BookListAdapter
 import org.koin.android.ext.android.get
 
- class BookListFragment : Fragment() {
+class BookListFragment : Fragment() {
 
     private val bookViewModel: BookViewModel by activityViewModels {
         BookViewModelFactory(
@@ -24,6 +25,12 @@ import org.koin.android.ext.android.get
     }
     private lateinit var binding: FragmentBookListBinding
     private val args: BookListFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +47,9 @@ import org.koin.android.ext.android.get
             viewModel = bookViewModel
             lifecycleOwner = this@BookListFragment
             recyclerViewBook.adapter = adapter
+            recyclerViewBook.addItemDecoration(
+                DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+            )
         }
         bookViewModel.books.observe(viewLifecycleOwner) {
             adapter.submitList(it)
@@ -50,5 +60,4 @@ import org.koin.android.ext.android.get
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)
     }
-
 }

@@ -12,5 +12,5 @@ class BookRepository(private val dao: BookDao) {
 
     suspend fun insertBook(book: Book) = dao.addBook(book)
 
-    suspend fun getBookListJson(bookName: String) = BookApi.retrofitService.getJson(bookName).items
+    suspend fun getBookListJson(bookName: String) = BookApi.retrofitService.getProperties(bookName).items
 }

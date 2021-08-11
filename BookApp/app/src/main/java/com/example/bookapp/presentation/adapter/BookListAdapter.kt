@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookapp.data.network.BookDTO
-import com.example.bookapp.databinding.ListItemBinding
+import com.example.bookapp.databinding.FragmentBookListItemBinding
 
 class BookListAdapter : ListAdapter<BookDTO, BookListAdapter.BookViewHolder>(DiffCallBack) {
 
-    class BookViewHolder(private val binding: ListItemBinding) :
+    class BookViewHolder(private val binding: FragmentBookListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(book: BookDTO) {
             binding.book = book
@@ -33,7 +33,7 @@ class BookListAdapter : ListAdapter<BookDTO, BookListAdapter.BookViewHolder>(Dif
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-        return BookViewHolder(ListItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return BookViewHolder(FragmentBookListItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
