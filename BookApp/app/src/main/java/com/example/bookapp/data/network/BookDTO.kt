@@ -6,18 +6,19 @@ import com.google.gson.annotations.SerializedName
 
 
 data class BookDTO(
+
     val title: String,
     val authors: List<String>,
     val averageRating: Float,
-    val description: String,
-    val imageLinks: ImageLinksDTO
+    var description: String?,
+    val imageLinks: ImageLinksDTO,
 ) : Mapper<Book> {
 
     override fun map(): Book  = Book (
         title = title,
         authors = authors.joinToString(),
         averageRating = averageRating,
-        description = description,
+        description = description ?: "No description",
         imageLink = imageLinks.thumbnail
     )
 }

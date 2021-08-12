@@ -1,6 +1,7 @@
 package com.example.bookapp.presentation.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,7 @@ class BookDetailFragment : Fragment() {
         )
     }
     private lateinit var binding: FragmentBookDetailBinding
-
+    private val args: BookDetailFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,13 +41,23 @@ class BookDetailFragment : Fragment() {
             lifecycleOwner = this@BookDetailFragment
             viewModel = bookViewModel
             bookDetailFragment = this@BookDetailFragment
+            book = bookViewModel.books.value?.let {
+                it.first { book ->
+                    Log.d("dDe", args.bookTitle)
+                    book.title == args.bookTitle
+                }
+            }
         }
+
     }
 
     fun addButtonClicked() {
         findNavController().navigate(R.id.action_bookDetailFragment_to_bookListFragment)
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.unbind()
+    }
 }
 

@@ -5,7 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.bookapp.BookApplication
 import com.example.bookapp.R
 import com.example.bookapp.application.interactor.network.GetBookListListUseCase
@@ -47,9 +46,6 @@ class BookListFragment : Fragment() {
             viewModel = bookViewModel
             lifecycleOwner = this@BookListFragment
             recyclerViewBook.adapter = adapter
-            recyclerViewBook.addItemDecoration(
-                DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-            )
         }
         bookViewModel.books.observe(viewLifecycleOwner) {
             adapter.submitList(it)

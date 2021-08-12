@@ -15,6 +15,10 @@
             name="bookDetailFragment"
             type="com.example.bookapp.presentation.ui.BookDetailFragment" />
 
+        <variable
+            name="book"
+            type="com.example.bookapp.data.network.BookDTO" />
+
     </data>
 
     <ScrollView
@@ -31,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:isIndicator="true"
-                android:rating="@{viewModel.books[0].averageRating}"
+                android:rating="@{book.averageRating}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +44,7 @@
                 android:id="@+id/book_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.books[0].title}"
+                android:text="@{book.title}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/book_rating" />
@@ -50,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:contentDescription="@string/book_image"
-                app:imageUrl="@{viewModel.books[0].imageLinks.thumbnail}"
+                app:imageUrl="@{book.imageLinks.thumbnail}"
                 app:layout_constraintBottom_toTopOf="@+id/book_author"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -60,7 +64,7 @@
                 android:id="@+id/book_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.books[0].authors[0]}"
+                android:text="@{book.authors[0]}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/book_image" />
 
@@ -68,7 +72,7 @@
                 android:id="@+id/book_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.books[0].description}"
+                android:text="@{book.description}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/book_author" />
 
