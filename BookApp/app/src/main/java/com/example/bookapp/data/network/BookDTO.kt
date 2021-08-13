@@ -2,19 +2,23 @@ package com.example.bookapp.data.network
 
 import com.example.bookapp.core.Mapper
 import com.example.bookapp.data.database.Book
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-
+@Serializable
 data class BookDTO(
 
     val title: String,
-    val authors: List<String>,
-    val averageRating: Float,
-    var description: String?,
+    @SerialName("authors")
+    val authors: List<String> = listOf("no authors"),
+    @SerialName("averageRating")
+    val averageRating: Float = 0f,
+    @SerialName("description")
+    var description: String = "No Description",
     val imageLinks: ImageLinksDTO,
 ) : Mapper<Book> {
 
-    override fun map(): Book  = Book (
+    override fun map(): Book = Book(
         title = title,
         authors = authors.joinToString(),
         averageRating = averageRating,
@@ -23,18 +27,19 @@ data class BookDTO(
     )
 }
 
-
+@Serializable
 data class ImageLinksDTO(
     val thumbnail: String,
     val smallThumbnail: String
 )
 
+@Serializable
 data class ItemsDTO(
-    @SerializedName("items")
     val items: List<VolumeInfoDTO>?
 )
 
+@Serializable
 data class VolumeInfoDTO(
-    @SerializedName("volumeInfo")
+    @SerialName("volumeInfo")
     val books: BookDTO
 )

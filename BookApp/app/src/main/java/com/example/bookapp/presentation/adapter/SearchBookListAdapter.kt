@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookapp.data.network.BookDTO
-import com.example.bookapp.databinding.FragmentBookListItemBinding
-import com.example.bookapp.presentation.ui.BookListFragmentDirections
+import com.example.bookapp.databinding.FragmentSearchBookListItemBinding
+import com.example.bookapp.presentation.ui.SearchBookListFragmentDirections
 
-class BookListAdapter : ListAdapter<BookDTO, BookListAdapter.BookViewHolder>(DiffCallBack) {
+class SearchBookListAdapter : ListAdapter<BookDTO, SearchBookListAdapter.BookViewHolder>(DiffCallBack) {
 
-    class BookViewHolder(val binding: FragmentBookListItemBinding) :
+    class BookViewHolder(val binding: FragmentSearchBookListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(book: BookDTO) {
             binding.book = book
@@ -35,14 +35,15 @@ class BookListAdapter : ListAdapter<BookDTO, BookListAdapter.BookViewHolder>(Dif
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-        return BookViewHolder(FragmentBookListItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return BookViewHolder(FragmentSearchBookListItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book = getItem(position)
         holder.bind(book)
         holder.itemView.setOnClickListener {
-            val action = BookListFragmentDirections.actionBookListFragmentToBookDetailFragment(bookTitle = book.title)
+            val action = SearchBookListFragmentDirections.
+                actionBookListFragmentToBookDetailFragment(bookTitle = book.title)
             holder.itemView.findNavController().navigate(action)
         }
     }

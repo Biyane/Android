@@ -3,27 +3,24 @@ package com.example.bookapp.presentation.ui
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.navArgs
+import androidx.fragment.app.viewModels
 import com.example.bookapp.BookApplication
 import com.example.bookapp.R
 import com.example.bookapp.application.interactor.network.GetBookListListUseCase
 import com.example.bookapp.application.model.BookViewModel
 import com.example.bookapp.application.model.BookViewModelFactory
-import com.example.bookapp.databinding.FragmentBookListBinding
-import com.example.bookapp.presentation.adapter.BookListAdapter
+import com.example.bookapp.databinding.FragmentMainBookListBinding
 import org.koin.android.ext.android.get
 
-class BookListFragment : Fragment() {
+class MainBookListFragment : Fragment() {
 
-    private val bookViewModel: BookViewModel by activityViewModels {
+    private lateinit var binding: FragmentMainBookListBinding
+    private val mainListViewModel: BookViewModel by viewModels {
         BookViewModelFactory(
             (activity?.application as BookApplication).repository,
             get<GetBookListListUseCase>()
         )
     }
-    private lateinit var binding: FragmentBookListBinding
-    private val args: BookListFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,23 +32,13 @@ class BookListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBookListBinding.inflate(layoutInflater)
-        bookViewModel.getBookList(args.bookName)
+        binding = FragmentMainBookListBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = BookListAdapter()
-        binding.apply {
-            viewModel = bookViewModel
-            lifecycleOwner = this@BookListFragment
-            recyclerViewBook.adapter = adapter
-        }
-        bookViewModel.books.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-        }
-    }
 
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)

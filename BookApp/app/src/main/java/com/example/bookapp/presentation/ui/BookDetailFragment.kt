@@ -1,7 +1,6 @@
 package com.example.bookapp.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.bookapp.BookApplication
-import com.example.bookapp.R
 import com.example.bookapp.application.interactor.network.GetBookListListUseCase
 import com.example.bookapp.application.model.BookViewModel
 import com.example.bookapp.application.model.BookViewModelFactory
@@ -38,12 +36,11 @@ class BookDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.apply {
-            lifecycleOwner = this@BookDetailFragment
+            lifecycleOwner = this@BookDetailFragment.viewLifecycleOwner
             viewModel = bookViewModel
             bookDetailFragment = this@BookDetailFragment
             book = bookViewModel.books.value?.let {
                 it.first { book ->
-                    Log.d("dDe", args.bookTitle)
                     book.title == args.bookTitle
                 }
             }
@@ -52,12 +49,10 @@ class BookDetailFragment : Fragment() {
     }
 
     fun addButtonClicked() {
-        findNavController().navigate(R.id.action_bookDetailFragment_to_bookListFragment)
+        binding.book?.map()?.let { bookViewModel.insertBook(it) }
+        val action = BookDetailFragmentDirections.actionBookDetailFragmentToMainBookListFragment()
+        findNavController().navigate(action)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.unbind()
-    }
 }
 

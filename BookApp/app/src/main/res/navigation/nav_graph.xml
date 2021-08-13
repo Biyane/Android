@@ -6,10 +6,10 @@
     app:startDestination="@id/searchBookFragment">
 
     <fragment
-        android:id="@+id/bookListFragment"
-        android:name="com.example.bookapp.presentation.ui.BookListFragment"
+        android:id="@+id/searchBookListFragment"
+        android:name="com.example.bookapp.presentation.ui.SearchBookListFragment"
         android:label="fragment_book_list"
-        tools:layout="@layout/fragment_book_list">
+        tools:layout="@layout/fragment_search_book_list">
         <argument
             android:name="bookName"
             app:argType="string" />
@@ -26,17 +26,20 @@
             android:name="bookTitle"
             app:argType="string"/>
         <action
-            android:id="@+id/action_bookDetailFragment_to_bookListFragment"
-            app:destination="@id/bookListFragment"
-            app:popUpTo="@id/bookListFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_bookDetailFragment_to_mainBookListFragment"
+            app:destination="@id/mainBookListFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchBookFragment"
         android:name="com.example.bookapp.presentation.ui.SearchBookFragment"
         android:label="fragment_search_book">
         <action
-            android:id="@+id/action_searchBookFragment_to_bookListFragment"
-            app:destination="@id/bookListFragment" />
+            android:id="@+id/action_searchBookFragment_to_searchBookListFragment"
+            app:destination="@id/searchBookListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainBookListFragment"
+        android:name="com.example.bookapp.presentation.ui.MainBookListFragment"
+        android:label="fragment_main_book_list"
+        tools:layout="@layout/fragment_main_book_list" />
 </navigation>

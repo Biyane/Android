@@ -32,8 +32,9 @@ class SearchBookFragment : Fragment() {
     fun onSearchClick(){
         val bookText = binding.editTextFindBook.text.toString()
         if (!TextUtils.isEmpty(bookText)){
-            val action = SearchBookFragmentDirections.actionSearchBookFragmentToBookListFragment(bookText)
+            val action = SearchBookFragmentDirections.actionSearchBookFragmentToSearchBookListFragment(bookText)
             findNavController().navigate(action)
         }
     }
+
 }
