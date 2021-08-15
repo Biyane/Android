@@ -1,5 +1,6 @@
 package com.example.bookapp.data.database
 
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,11 +10,11 @@ import androidx.room.PrimaryKey
 data class Book(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "authors") val authors: String,
-    @ColumnInfo(name = "average_rating") val averageRating: Float,
-    @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "image_link") val imageLink: String
+    @NonNull @ColumnInfo(name = "title") val title: String,
+    @NonNull @ColumnInfo(name = "authors") val authors: String,
+    @NonNull @ColumnInfo(name = "average_rating") val averageRating: Float,
+    @NonNull @ColumnInfo(name = "description") val description: String,
+    @NonNull @ColumnInfo(name = "image_link") val imageLink: String
 )
 
 

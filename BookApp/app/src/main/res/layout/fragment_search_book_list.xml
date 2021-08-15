@@ -4,18 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.ui.SearchBookListFragment">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.bookapp.application.model.BookViewModel" />
-
-    </data>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_book"
             android:layout_width="wrap_content"
@@ -24,7 +12,5 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:padding="20dp"
             android:clipToPadding="false"/>
-
-    </FrameLayout>
 
 </layout>

@@ -12,8 +12,6 @@ class BookViewModel(
     private val getBookList: IGetBookListUseCase
 ) : ViewModel() {
 
-    val bookList: LiveData<List<Book>> = repository.books.asLiveData()
-
     private var _books = MutableLiveData<List<BookDTO>>()
     val books: LiveData<List<BookDTO>> = _books
 

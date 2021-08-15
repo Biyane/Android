@@ -20,7 +20,9 @@ abstract class BookRoomDatabase : RoomDatabase() {
                     context,
                     BookRoomDatabase::class.java,
                     "book_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
 
                 instance

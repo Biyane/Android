@@ -14,6 +14,7 @@ class SearchBookFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBookBinding
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

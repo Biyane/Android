@@ -43,7 +43,6 @@ class SearchBookListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = SearchBookListAdapter()
         binding.apply {
-            viewModel = bookViewModel
             lifecycleOwner = this@SearchBookListFragment.viewLifecycleOwner
             recyclerViewBook.adapter = adapter
         }
@@ -51,7 +50,6 @@ class SearchBookListFragment : Fragment() {
             adapter.submitList(it)
         }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)

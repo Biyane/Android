@@ -7,4 +7,6 @@
     <string name="book_image">Book Image</string>
     <string name="add">Add</string>
     <string name="search">search</string>
+    <string name="add_book">Add book</string>
+    <string name="image_of_book_in_main_list">Image of book in main list</string>
 </resources>

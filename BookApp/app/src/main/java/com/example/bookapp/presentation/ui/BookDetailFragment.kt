@@ -1,6 +1,7 @@
 package com.example.bookapp.presentation.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,11 +46,15 @@ class BookDetailFragment : Fragment() {
                 }
             }
         }
-
     }
 
     fun addButtonClicked() {
-        binding.book?.map()?.let { bookViewModel.insertBook(it) }
+        try {
+            binding.book?.map()?.let { bookViewModel.insertBook(it) }
+        }
+        catch (e: Exception) {
+            Log.e("bookDetailFragment", e.toString())
+        }
         val action = BookDetailFragmentDirections.actionBookDetailFragmentToMainBookListFragment()
         findNavController().navigate(action)
     }
