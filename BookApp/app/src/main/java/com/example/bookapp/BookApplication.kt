@@ -17,6 +17,7 @@ class BookApplication : Application() {
             androidContext(this@BookApplication)
             modules(bookModule)
         }
+//        database.clearAllTables()
     }
 
     companion object {
@@ -25,6 +26,7 @@ class BookApplication : Application() {
     }
 
     val database by lazy { BookRoomDatabase.getDatabase(this) }
+
 
     val repository by lazy { BookRepository(database.getDao()) }
 }

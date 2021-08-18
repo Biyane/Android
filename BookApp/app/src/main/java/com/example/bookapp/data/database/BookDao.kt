@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface BookDao {
 
-    @Query("SELECT * from book_table")
+    @Query("SELECT * FROM book_table")
     fun getAllBooks(): Flow<List<Book>>
 
     @Insert

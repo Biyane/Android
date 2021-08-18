@@ -21,12 +21,19 @@
         
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:fabCustomSize="75dp"
+            android:foregroundGravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="16dp"
+            android:scaleType="center"
             android:contentDescription="@string/add_book"
+            android:elevation="1dp"
+            app:borderWidth="5dp"
+            app:pressedTranslationZ="10dp"
+            app:maxImageSize="50dp"
             android:src="@drawable/ic_add_button_fab"/>
         
     </androidx.constraintlayout.widget.ConstraintLayout>

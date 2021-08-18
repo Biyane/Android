@@ -47,9 +47,14 @@ class MainBookListFragment : Fragment() {
             }
         }
         Log.e("MainBookListFragment", "error")
-//        mainListViewModel.bookList.observe(viewLifecycleOwner) {
-//            adapter.submitList(it)
-//        }
+        mainListViewModel.bookList.observe(viewLifecycleOwner) {
+            try {
+
+                adapter.submitList(it)
+            } catch (e: Exception) {
+                Log.e("MainBookListFragment", e.toString())
+            }
+        }
         Log.e("MainBookListFragment", "error")
     }
 

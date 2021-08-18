@@ -22,8 +22,8 @@ data class BookDTO(
         title = title,
         authors = authors.joinToString(),
         averageRating = averageRating,
-        description = description ?: "No description",
-        imageLink = imageLinks.thumbnail
+        description = description,
+        imageLink = imageLinks.thumbnail,
     )
 }
 

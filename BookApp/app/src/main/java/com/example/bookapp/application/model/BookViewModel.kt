@@ -1,5 +1,6 @@
 package com.example.bookapp.application.model
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.bookapp.application.interactor.network.IGetBookListUseCase
 import com.example.bookapp.application.repository.BookRepository
@@ -16,7 +17,11 @@ class BookViewModel(
     val books: LiveData<List<BookDTO>> = _books
 
     fun insertBook(book: Book) = viewModelScope.launch {
-        repository.insertBook(book)
+        try {
+            repository.insertBook(book)
+        } catch (e: Exception) {
+            Log.e("BookViewModel", e.toString())
+        }
     }
 
     fun getBookList(bookName: String) = viewModelScope.launch {
