@@ -46,16 +46,15 @@ class MainBookListFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-        Log.e("MainBookListFragment", "error")
         mainListViewModel.bookList.observe(viewLifecycleOwner) {
-            try {
-
+            kotlin.runCatching {
                 adapter.submitList(it)
-            } catch (e: Exception) {
-                Log.e("MainBookListFragment", e.toString())
+            }.let {
+                if (it.isFailure) {
+                    Log.e("MainBookListFragment", it.exceptionOrNull().toString())
+                }
             }
         }
-        Log.e("MainBookListFragment", "error")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

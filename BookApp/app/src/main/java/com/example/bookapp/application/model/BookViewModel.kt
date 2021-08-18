@@ -17,10 +17,12 @@ class BookViewModel(
     val books: LiveData<List<BookDTO>> = _books
 
     fun insertBook(book: Book) = viewModelScope.launch {
-        try {
+        kotlin.runCatching {
             repository.insertBook(book)
-        } catch (e: Exception) {
-            Log.e("BookViewModel", e.toString())
+        }.let {
+            if (it.isSuccess) {
+                Log.d("BookViewModel",it.exceptionOrNull().toString())
+            }
         }
     }
 
