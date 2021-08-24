@@ -14,4 +14,10 @@ interface BookDao {
     @Insert
     suspend fun addBook(book: Book)
 
+    @Query("SELECT * FROM book_table WHERE id == :id")
+    suspend fun getBookById(id: Int): Book
+
+    @Query("DELETE FROM book_table WHERE id == :id")
+    suspend fun deleteBookById(id: Int)
+
 }

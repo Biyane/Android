@@ -37,8 +37,6 @@ class BookDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.apply {
-            lifecycleOwner = this@BookDetailFragment.viewLifecycleOwner
-            viewModel = bookViewModel
             bookDetailFragment = this@BookDetailFragment
             book = bookViewModel.books.value?.let {
                 it.first { book ->

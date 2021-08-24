@@ -43,7 +43,6 @@ class SearchBookListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = SearchBookListAdapter()
         binding.apply {
-            lifecycleOwner = this@SearchBookListFragment.viewLifecycleOwner
             recyclerViewBook.adapter = adapter
         }
         bookViewModel.books.observe(viewLifecycleOwner) {

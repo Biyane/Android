@@ -8,10 +8,6 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.example.bookapp.application.model.BookViewModel" />
-
-        <variable
             name="bookDetailFragment"
             type="com.example.bookapp.presentation.ui.BookDetailFragment" />
 

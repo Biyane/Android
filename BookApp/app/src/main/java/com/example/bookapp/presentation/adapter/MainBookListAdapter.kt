@@ -2,11 +2,13 @@ package com.example.bookapp.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookapp.data.database.Book
 import com.example.bookapp.databinding.FragmentMainBookListItemBinding
+import com.example.bookapp.presentation.ui.MainBookListFragmentDirections
 
 class MainBookListAdapter
     : ListAdapter<Book, MainBookListAdapter.MainBookViewHolder>(DiffCallback) {
@@ -28,6 +30,10 @@ class MainBookListAdapter
     override fun onBindViewHolder(holder: MainBookViewHolder, position: Int) {
         val book = getItem(position)
         holder.bind(book)
+        holder.itemView.setOnClickListener {
+            val action = MainBookListFragmentDirections.actionMainBookListFragmentToMainBookListDetailFragment(bookId = book.id)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Book>() {

@@ -39,7 +39,6 @@ class MainBookListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = MainBookListAdapter()
         binding.run {
-            lifecycleOwner = this@MainBookListFragment.viewLifecycleOwner
             fragmentMainBookListRv.adapter = adapter
             fab.setOnClickListener {
                 val action = MainBookListFragmentDirections.actionMainBookListFragmentToSearchBookFragment()
@@ -49,7 +48,7 @@ class MainBookListFragment : Fragment() {
         mainListViewModel.bookList.observe(viewLifecycleOwner) {
             kotlin.runCatching {
                 adapter.submitList(it)
-            }.let {
+            }.also {
                 if (it.isFailure) {
                     Log.e("MainBookListFragment", it.exceptionOrNull().toString())
                 }

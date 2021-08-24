@@ -48,5 +48,17 @@
         <action
             android:id="@+id/action_mainBookListFragment_to_searchBookFragment"
             app:destination="@id/searchBookFragment" />
+        <action
+            android:id="@+id/action_mainBookListFragment_to_mainBookListDetailFragment"
+            app:destination="@id/mainBookListDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainBookListDetailFragment"
+        android:name="com.example.bookapp.presentation.ui.MainBookListDetailFragment"
+        android:label="fragment_main_book_list_detail"
+        tools:layout="@layout/fragment_main_book_list_detail">
+        <argument
+            android:name="bookId"
+            app:argType="integer"/>
     </fragment>
 </navigation>
