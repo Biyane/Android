@@ -10,7 +10,8 @@ import com.example.bookapp.data.network.BookDTO
 import com.example.bookapp.databinding.FragmentSearchBookListItemBinding
 import com.example.bookapp.presentation.ui.SearchBookListFragmentDirections
 
-class SearchBookListAdapter : ListAdapter<BookDTO, SearchBookListAdapter.BookViewHolder>(DiffCallBack) {
+class SearchBookListAdapter
+    : ListAdapter<BookDTO, SearchBookListAdapter.BookViewHolder>(DiffCallBack) {
 
     class BookViewHolder(val binding: FragmentSearchBookListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

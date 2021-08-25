@@ -12,7 +12,9 @@ import com.example.bookapp.presentation.ui.MainBookListFragmentDirections
 
 class MainBookListAdapter
     : ListAdapter<Book, MainBookListAdapter.MainBookViewHolder>(DiffCallback) {
-    class MainBookViewHolder(
+
+    private var bookFilterList = listOf<Book>()
+    inner class MainBookViewHolder(
         private val binding: FragmentMainBookListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(book: Book) {

@@ -23,6 +23,7 @@ class SearchBookListFragment : Fragment() {
         )
     }
     private lateinit var binding: FragmentSearchBookListBinding
+    private lateinit var adapter: SearchBookListAdapter
     private val args: SearchBookListFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +42,7 @@ class SearchBookListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = SearchBookListAdapter()
+        adapter = SearchBookListAdapter()
         binding.apply {
             recyclerViewBook.adapter = adapter
         }
