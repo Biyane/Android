@@ -72,7 +72,7 @@ class MainBookListFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let { searchText ->
                     adapter.submitList(filteredList.filter {
-                        it.title.contains(searchText)
+                        it.title.lowercase().contains(searchText.lowercase())
                     })
                 }
                 return false
