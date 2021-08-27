@@ -9,4 +9,5 @@
     <string name="search">search</string>
     <string name="add_book">Add book</string>
     <string name="image_of_book_in_main_list">Image of book in main list</string>
+    <string name="enter_book_name">Enter book name</string>
 </resources>
