@@ -8,13 +8,11 @@ plugins {
 
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-
     defaultConfig {
-        applicationId "com.example.bookapp"
-        minSdkVersion 28
-        targetSdkVersion 30
+        applicationId "kz.biyane.bookapp"
+        minSdk 23
+        compileSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
